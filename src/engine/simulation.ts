@@ -24,8 +24,14 @@ export function createInitialSimulationState(config: SimulationConfig): Simulati
   const seed = config.customSeed ?? Math.floor(Math.random() * 2147483647);
   const prng = new PRNG(seed);
 
-  // Sample birthplace
-  const birth = sampleBirthplace(prng, config.birthWeighting, config.worldEra);
+  // Sample birthplace (guaranteed target country if selected by user, else weighted random draw)
+  const birth = sampleBirthplace(
+    prng,
+    config.birthWeighting,
+    config.worldEra,
+    undefined,
+    config.targetCountryCode
+  );
   const country = birth.country;
 
   // Draw income distribution

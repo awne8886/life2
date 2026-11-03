@@ -3,10 +3,60 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-parchment-50: 252 251 249;
+    --color-parchment-100: 247 245 239;
+    --color-parchment-200: 239 236 224;
+    --color-parchment-300: 223 218 200;
+    --color-parchment-400: 197 191 167;
+    --color-parchment-500: 168 160 133;
+    --color-parchment-800: 43 42 38;
+    --color-parchment-900: 26 25 23;
+    --color-parchment-950: 16 15 13;
+
+    --color-ink: 28 27 24;
+    --color-ink-light: 80 78 71;
+    --color-ink-deep: 15 14 12;
+
+    --color-rust: 139 56 34;
+    --color-rust-light: 184 84 56;
+    --color-rust-dark: 104 39 21;
+
+    --color-sage-50: 244 246 243;
+    --color-sage-100: 229 234 227;
+    --color-sage-500: 92 120 96;
+    --color-sage-700: 53 76 57;
+  }
+
+  .dark {
+    --color-parchment-50: 24 25 28;
+    --color-parchment-100: 15 16 18;
+    --color-parchment-200: 32 34 38;
+    --color-parchment-300: 48 51 58;
+    --color-parchment-400: 70 74 84;
+    --color-parchment-500: 105 110 122;
+    --color-parchment-800: 215 218 228;
+    --color-parchment-900: 238 240 248;
+    --color-parchment-950: 248 249 252;
+
+    --color-ink: 238 235 228;
+    --color-ink-light: 165 162 153;
+    --color-ink-deep: 255 255 255;
+
+    --color-rust: 224 109 78;
+    --color-rust-light: 238 135 106;
+    --color-rust-dark: 192 84 55;
+
+    --color-sage-50: 22 30 25;
+    --color-sage-100: 30 44 34;
+    --color-sage-500: 112 168 123;
+    --color-sage-700: 145 200 156;
+  }
+
   html {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #1c1b18;
-    background-color: #f7f5ef;
+    color: rgb(var(--color-ink));
+    background-color: rgb(var(--color-parchment-100));
     scroll-behavior: smooth;
   }
 
@@ -16,7 +66,7 @@
   }
 
   ::selection {
-    background-color: #8b3822;
+    background-color: rgb(var(--color-rust));
     color: #ffffff;
   }
 }
@@ -39,9 +89,9 @@
   background: transparent;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: #dfdac8;
+  background-color: rgb(var(--color-parchment-300));
   border-radius: 9999px;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: #c5bfa7;
+  background-color: rgb(var(--color-parchment-400));
 }

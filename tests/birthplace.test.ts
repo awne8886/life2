@@ -73,4 +73,14 @@ describe('Birthplace Sampler', () => {
     const invalid = getCountryByCode('XYZ');
     expect(invalid).toBeUndefined();
   });
+
+  it('should guarantee birth in the target country when targetCountryCode is specified', () => {
+    const prng = new PRNG(101);
+    const countriesToTest = ['VNM', 'NOR', 'USA', 'EGY', 'AFG', 'JPN', 'BRA'];
+
+    for (const code of countriesToTest) {
+      const birth = sampleBirthplace(prng, 'births', 'today', undefined, code);
+      expect(birth.country.code).toBe(code);
+    }
+  });
 });

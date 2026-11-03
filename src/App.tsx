@@ -10,7 +10,7 @@ import { CountryExplorer } from './components/CountryExplorer';
 import { EducationGuide } from './components/EducationGuide';
 import { StaticPageView, CrisisModal } from './components/StaticPages';
 import { Footer } from './components/Footer';
-import { Sparkles, BookOpen, Globe2, HelpCircle, GraduationCap } from 'lucide-react';
+import { Sparkles, BookOpen, Globe2, HelpCircle, GraduationCap, Sun, Moon } from 'lucide-react';
 
 export function App() {
   const [currentView, setCurrentView] = useState<string>('home');
@@ -18,6 +18,28 @@ export function App() {
   const [isCrisisOpen, setIsCrisisOpen] = useState(false);
   const [isClassroomFromUrl, setIsClassroomFromUrl] = useState(false);
   const [showSetupModal, setShowSetupModal] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    try {
+      return localStorage.getItem('life_theme') === 'light' ? 'light' : 'dark';
+    } catch {
+      return 'dark';
+    }
+  });
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    try {
+      localStorage.setItem('life_theme', theme);
+    } catch (e) {}
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   // Check URL parameters like ?edu=1
   useEffect(() => {
@@ -123,12 +145,26 @@ export function App() {
               onClick={() => setCurrentView('edu')}
               className={`hidden sm:flex px-3 py-1.5 rounded-lg transition-colors items-center gap-1 ${
                 currentView === 'edu'
-                  ? 'bg-indigo-100 text-indigo-900 font-semibold'
+                  ? 'bg-indigo-100 text-indigo-900 font-semibold dark:bg-indigo-950 dark:text-indigo-200'
                   : 'text-ink-light hover:text-ink hover:bg-parchment-200/60'
               }`}
             >
-              <GraduationCap className="w-3.5 h-3.5 text-indigo-700" />
+              <GraduationCap className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-400" />
               <span>Education</span>
+            </button>
+
+            {/* Theme Toggle (Dark Mode default) */}
+            <button
+              onClick={toggleTheme}
+              title={theme === 'dark' ? 'Switch to light parchment theme' : 'Switch to dark theme'}
+              aria-label="Toggle dark mode theme"
+              className="p-1.5 rounded-lg text-ink-light hover:text-ink hover:bg-parchment-200/80 transition-colors ml-1"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-300 hover:rotate-45 transition-transform" />
+              ) : (
+                <Moon className="w-4 h-4 text-ink-light" />
+              )}
             </button>
           </nav>
         </div>
@@ -168,7 +204,20 @@ export function App() {
         )}
 
         {currentView === 'country-stats' && (
-          <CountryExplorer />
+          <CountryExplorer
+            onSelectCountryToSimulate={(code) => {
+              handleStartGame({
+                worldEra: 'today',
+                birthWeighting: 'births',
+                targetCountryCode: code,
+                lifeSpeed: 'normal',
+                calmMusic: true,
+                leaveOutFrighteningScenes: false,
+                classroomMode: false,
+                autoMode: false
+              });
+            }}
+          />
         )}
 
         {currentView === 'edu' && (

@@ -105,7 +105,8 @@ export function sampleBirthplace(
   prng: PRNG,
   weighting: BirthWeighting = 'births',
   era: WorldEra = 'today',
-  countries: CountryData[] = COUNTRIES
+  countries: CountryData[] = COUNTRIES,
+  targetCountryCode?: string
 ): BirthplaceSelection {
   // Determine effective era
   let effectiveEra = era;
@@ -114,16 +115,27 @@ export function sampleBirthplace(
     effectiveEra = prng.choice(candidateEras);
   }
 
-  // Weight countries
-  const weightedList = countries.map((c) => {
-    const rawWeight = weighting === 'births' ? c.annualBirths : c.population;
-    return {
+  let baseCountry: CountryData;
+  if (targetCountryCode) {
+    const matched = countries.find((c) => c.code === targetCountryCode);
+    if (matched) {
+      baseCountry = matched;
+    } else {
+      const weightedList = countries.map((c) => ({
+        item: c,
+        weight: weighting === 'births' ? c.annualBirths : c.population
+      }));
+      baseCountry = prng.weightedChoice(weightedList);
+    }
+  } else {
+    // Weight countries
+    const weightedList = countries.map((c) => ({
       item: c,
-      weight: rawWeight
-    };
-  });
+      weight: weighting === 'births' ? c.annualBirths : c.population
+    }));
+    baseCountry = prng.weightedChoice(weightedList);
+  }
 
-  const baseCountry = prng.weightedChoice(weightedList);
   const adjustedCountry = applyEraModifier(baseCountry, effectiveEra);
 
   // Sex ratio: ~105 males per 100 females natural ratio (51.2% male)

@@ -1,4 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgb(var(${variableName}) / ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+}
+
 export default {
   content: [
     "./index.html",
@@ -9,31 +19,31 @@ export default {
     extend: {
       colors: {
         parchment: {
-          50: '#fcfbf9',
-          100: '#f7f5ef',
-          200: '#efece0',
-          300: '#dfdac8',
-          400: '#c5bfa7',
-          500: '#a8a085',
-          800: '#2b2a26',
-          900: '#1a1917',
-          950: '#100f0d',
+          50: withOpacity('--color-parchment-50'),
+          100: withOpacity('--color-parchment-100'),
+          200: withOpacity('--color-parchment-200'),
+          300: withOpacity('--color-parchment-300'),
+          400: withOpacity('--color-parchment-400'),
+          500: withOpacity('--color-parchment-500'),
+          800: withOpacity('--color-parchment-800'),
+          900: withOpacity('--color-parchment-900'),
+          950: withOpacity('--color-parchment-950'),
         },
         ink: {
-          light: '#3d3c37',
-          DEFAULT: '#1c1b18',
-          deep: '#0f0e0c',
+          light: withOpacity('--color-ink-light'),
+          DEFAULT: withOpacity('--color-ink'),
+          deep: withOpacity('--color-ink-deep'),
         },
         rust: {
-          light: '#b85438',
-          DEFAULT: '#8b3822',
-          dark: '#682715',
+          light: withOpacity('--color-rust-light'),
+          DEFAULT: withOpacity('--color-rust'),
+          dark: withOpacity('--color-rust-dark'),
         },
         sage: {
-          50: '#f4f6f3',
-          100: '#e5eae3',
-          500: '#5c7860',
-          700: '#354c39',
+          50: withOpacity('--color-sage-50'),
+          100: withOpacity('--color-sage-100'),
+          500: withOpacity('--color-sage-500'),
+          700: withOpacity('--color-sage-700'),
         }
       },
       fontFamily: {

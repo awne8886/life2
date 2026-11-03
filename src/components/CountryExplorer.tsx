@@ -18,11 +18,11 @@ type SortField =
   | 'meanYearsSchooling'
   | 'outOfPocketHealthSpending';
 
-export const CountryExplorer: React.FC<CountryExplorerProps> = () => {
+export const CountryExplorer: React.FC<CountryExplorerProps> = ({ onSelectCountryToSimulate }) => {
   const [search, setSearch] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('all');
-  const [sortField, setSortField] = useState<SortField>('annualBirths');
-  const [sortAsc, setSortAsc] = useState(false);
+  const [sortField, setSortField] = useState<SortField>('name');
+  const [sortAsc, setSortAsc] = useState(true);
   const [inspectCountry, setInspectCountry] = useState<CountryData | null>(null);
 
   const regions = ['all', ...Array.from(new Set(COUNTRIES.map((c) => c.region)))];
@@ -235,12 +235,26 @@ export const CountryExplorer: React.FC<CountryExplorerProps> = () => {
                   </p>
                 </div>
               </div>
-              <button
-                onClick={() => setInspectCountry(null)}
-                className="text-sm font-semibold text-ink-light hover:text-ink px-3 py-1 rounded-lg bg-parchment-200"
-              >
-                Close
-              </button>
+              <div className="flex items-center gap-2">
+                {onSelectCountryToSimulate && (
+                  <button
+                    onClick={() => {
+                      const code = inspectCountry.code;
+                      setInspectCountry(null);
+                      onSelectCountryToSimulate(code);
+                    }}
+                    className="text-xs font-semibold bg-rust hover:bg-rust-dark text-white px-3.5 py-1.5 rounded-lg shadow-xs transition-colors flex items-center gap-1.5"
+                  >
+                    <span>👶 Be born here</span>
+                  </button>
+                )}
+                <button
+                  onClick={() => setInspectCountry(null)}
+                  className="text-sm font-semibold text-ink-light hover:text-ink px-3 py-1 rounded-lg bg-parchment-200"
+                >
+                  Close
+                </button>
+              </div>
             </div>
 
             {/* Demographics Overview Grid */}

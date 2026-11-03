@@ -119,4 +119,20 @@ describe('Deterministic Simulation Engine', () => {
     expect(finalHistory.partingWords).toBe('Rest in gentle peace.');
     expect(finalHistory.entries.length).toBeGreaterThanOrEqual(1);
   });
+
+  it('should guarantee targetCountryCode in initial simulation state', () => {
+    const state = createInitialSimulationState({
+      worldEra: 'today',
+      birthWeighting: 'births',
+      targetCountryCode: 'VNM',
+      lifeSpeed: 'normal',
+      leaveOutFrighteningScenes: false,
+      classroomMode: false,
+      calmMusic: false,
+      autoMode: false
+    });
+
+    expect(state.country.code).toBe('VNM');
+    expect(state.country.name).toBe('Vietnam');
+  });
 });

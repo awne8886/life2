@@ -949,7 +949,7 @@ export const COUNTRIES: CountryData[] = [
       sourceYear: 2024
     }
   }
-];
+].sort((a, b) => a.name.localeCompare(b.name));
 
 export const COUNTRY_LOOKUP = new Map<string, CountryData>(
   COUNTRIES.map((c) => [c.code, c])

@@ -174,6 +174,7 @@ export interface MilestoneDefinition {
 export interface SimulationConfig {
   worldEra: WorldEra;
   birthWeighting: BirthWeighting;
+  targetCountryCode?: string; // If set, birth is guaranteed in this specific country
   lifeSpeed: LifeSpeed;
   realCountryCode?: string;
   leaveOutFrighteningScenes: boolean;

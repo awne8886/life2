@@ -13,6 +13,7 @@ export const SetupCard: React.FC<SetupCardProps> = ({ onStartGame, defaultClassr
   const [worldEra, setWorldEra] = useState<WorldEra>('today');
   const [birthWeighting, setBirthWeighting] = useState<BirthWeighting>('births');
   const [lifeSpeed, setLifeSpeed] = useState<LifeSpeed>('normal');
+  const [targetCountryCode, setTargetCountryCode] = useState<string>('');
   const [realCountryCode, setRealCountryCode] = useState<string>('');
   const [calmMusic, setCalmMusic] = useState<boolean>(true);
   const [leaveOutFrightening, setLeaveOutFrightening] = useState<boolean>(false);
@@ -24,6 +25,7 @@ export const SetupCard: React.FC<SetupCardProps> = ({ onStartGame, defaultClassr
     onStartGame({
       worldEra,
       birthWeighting,
+      targetCountryCode: targetCountryCode || undefined,
       lifeSpeed,
       realCountryCode: realCountryCode || undefined,
       calmMusic,
@@ -75,45 +77,96 @@ export const SetupCard: React.FC<SetupCardProps> = ({ onStartGame, defaultClassr
           </div>
         </div>
 
-        {/* Birthplace Draw Mode */}
-        <div>
-          <label className="block text-sm font-semibold text-ink mb-2">
-            2. Birthplace Draw
+        {/* Birth Country & Draw Mode */}
+        <div className="space-y-3">
+          <label className="block text-sm font-semibold text-ink">
+            2. Birthplace / Birth Country
           </label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <button
-              type="button"
-              onClick={() => setBirthWeighting('births')}
-              className={`p-3.5 rounded-xl border text-left transition-all ${
-                birthWeighting === 'births'
-                  ? 'border-rust bg-rust/5 ring-1 ring-rust text-rust-dark font-medium'
-                  : 'border-parchment-300 bg-parchment-100 hover:bg-parchment-200 text-ink-light'
-              }`}
-            >
-              <div className="text-sm font-semibold flex items-center justify-between">
-                <span>Weighted by Annual Births</span>
-                <span className="text-xs bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded">Realistic</span>
-              </div>
-              <p className="text-xs text-ink-light mt-1">
-                Reflects where babies are born today. Skews heavily to high-fertility nations (Nigeria, India, DRC, Pakistan).
-              </p>
-            </button>
+          <p className="text-xs text-ink-light">
+            Leave on random to experience the true birth lottery, or choose a specific country to guarantee birth there.
+          </p>
 
-            <button
-              type="button"
-              onClick={() => setBirthWeighting('population')}
-              className={`p-3.5 rounded-xl border text-left transition-all ${
-                birthWeighting === 'population'
-                  ? 'border-rust bg-rust/5 ring-1 ring-rust text-rust-dark font-medium'
-                  : 'border-parchment-300 bg-parchment-100 hover:bg-parchment-200 text-ink-light'
-              }`}
+          <div className="space-y-2">
+            <select
+              value={targetCountryCode}
+              onChange={(e) => setTargetCountryCode(e.target.value)}
+              className="w-full bg-parchment-100 border border-parchment-300 rounded-xl px-3.5 py-2.5 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-rust font-medium"
             >
-              <div className="text-sm font-semibold">Weighted by Population</div>
-              <p className="text-xs text-ink-light mt-1">
-                Reflects current living human headcount (China, India, US, Indonesia receive standard proportional draws).
-              </p>
-            </button>
+              <option value="">🎲 Random Country (Global Probability Lottery)</option>
+              <optgroup label="Select Country (Guaranteed Birth, Alphabetical A–Z)">
+                {COUNTRIES.map((c) => (
+                  <option key={c.code} value={c.code}>
+                    {c.flag} {c.name} ({c.region})
+                  </option>
+                ))}
+              </optgroup>
+            </select>
           </div>
+
+          {targetCountryCode ? (
+            <div className="p-3.5 bg-rust/5 border border-rust/30 rounded-xl text-xs text-ink flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <span className="text-2xl">
+                  {COUNTRIES.find((c) => c.code === targetCountryCode)?.flag}
+                </span>
+                <div>
+                  <span className="font-semibold text-rust-dark text-sm block">
+                    Guaranteed Birth: {COUNTRIES.find((c) => c.code === targetCountryCode)?.name}
+                  </span>
+                  <div className="text-[11px] text-ink-light">
+                    You will be born in {COUNTRIES.find((c) => c.code === targetCountryCode)?.name}. Mortality rates, healthcare, education, and income distribution will strictly match this country.
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setTargetCountryCode('')}
+                className="text-xs text-rust hover:underline font-semibold ml-2 shrink-0 px-2 py-1 bg-parchment-200/80 rounded"
+              >
+                Reset to Random
+              </button>
+            </div>
+          ) : (
+            <div>
+              <div className="text-xs font-medium text-ink-light mb-1.5">
+                Random Lottery Distribution:
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setBirthWeighting('births')}
+                  className={`p-3.5 rounded-xl border text-left transition-all ${
+                    birthWeighting === 'births'
+                      ? 'border-rust bg-rust/5 ring-1 ring-rust text-rust-dark font-medium'
+                      : 'border-parchment-300 bg-parchment-100 hover:bg-parchment-200 text-ink-light'
+                  }`}
+                >
+                  <div className="text-sm font-semibold flex items-center justify-between">
+                    <span>Weighted by Annual Births</span>
+                    <span className="text-[10px] bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded font-mono">Realistic</span>
+                  </div>
+                  <p className="text-xs text-ink-light mt-1">
+                    Reflects where ~4.3 babies per second are born today. Skews heavily to high-fertility nations.
+                  </p>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setBirthWeighting('population')}
+                  className={`p-3.5 rounded-xl border text-left transition-all ${
+                    birthWeighting === 'population'
+                      ? 'border-rust bg-rust/5 ring-1 ring-rust text-rust-dark font-medium'
+                      : 'border-parchment-300 bg-parchment-100 hover:bg-parchment-200 text-ink-light'
+                  }`}
+                >
+                  <div className="text-sm font-semibold">Weighted by Population</div>
+                  <p className="text-xs text-ink-light mt-1">
+                    Reflects current living human headcount (China, India, US, Indonesia receive standard proportional draws).
+                  </p>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Life Progression Speed */}
