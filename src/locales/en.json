@@ -1,0 +1,106 @@
+{
+  "app": {
+    "title": "life",
+    "subtitle": "A realistic random-birth life simulator",
+    "tagline": "About four babies are born every second. You are about to become one of them.",
+    "goal": "The goal is perspective, not winning."
+  },
+  "hero": {
+    "hook": "about four babies are born every second",
+    "liveBirths": "Births since page open",
+    "liveDeaths": "Deaths since page open",
+    "bornRate": "~4.3 per second worldwide",
+    "deathRate": "~1.9 per second worldwide",
+    "beBornButton": "Be Born",
+    "continueExistingLife": "Continue Life in Progress"
+  },
+  "setup": {
+    "title": "Birth Settings",
+    "worldEra": "World Era",
+    "worldToday": "Today (2024)",
+    "worldPast1970": "Past (1970)",
+    "worldPast1990": "Past (1990)",
+    "worldFuture2050": "Future (2050 Projections)",
+    "worldAny": "Any (Random Era)",
+    "birthWeighting": "Birthplace Draw",
+    "weightingBirths": "Weighted by Annual Births (skews to high-fertility nations)",
+    "weightingPopulation": "Weighted by Current Population",
+    "lifeSpeed": "Game Progression Speed",
+    "speedSlow": "Thoughtful (~1.5 hours / manual pause)",
+    "speedNormal": "Standard (~1 hour)",
+    "speedFast": "Quick (~30 minutes)",
+    "realBirthplace": "Where I was really born (Optional, stored locally for final comparison)",
+    "calmMusic": "Calm ambient soundscape",
+    "leaveOutFrightening": "Leave out frightening scenes (suppresses heavy themes while keeping demographic outcomes)",
+    "classroomMode": "Classroom Mode (?edu=1)",
+    "autoMode": "Auto Mode (engine resolves routine focuses; pauses for milestones and major choices)"
+  },
+  "game": {
+    "age": "Age",
+    "year": "Year",
+    "focus": "Yearly Focus",
+    "health": "Health",
+    "happiness": "Happiness",
+    "knowledge": "Knowledge",
+    "relationships": "Relationships",
+    "wealth": "Wealth",
+    "focusEducation": "Education",
+    "focusIncome": "Income",
+    "focusHealth": "Health",
+    "focusRelationships": "Relationships",
+    "nextYear": "Live Next Year",
+    "pause": "Pause",
+    "play": "Play",
+    "lifeRecord": "Life Record",
+    "sameSecondPeers": "Same-Second Peers",
+    "peersSub": "4 babies born around the world at the exact same moment",
+    "decisionRequired": "Decision Checkpoint",
+    "makeChoice": "Make Choice",
+    "milestonePaused": "Milestone Reflection",
+    "personalNoteOptional": "Your reflection (saved locally to life record):",
+    "saveAndContinue": "Reflect & Continue",
+    "autoModeActive": "Auto mode active"
+  },
+  "death": {
+    "title": "Life Completed",
+    "passedAwayAt": "Passed away at age",
+    "inYear": "in the year",
+    "cause": "Cause of death",
+    "lifeMapTitle": "Life Map (1 square = 1 year lived)",
+    "finalStanding": "Socioeconomic Standing",
+    "comparisonTitle": "Birthplace Comparison",
+    "shareCard": "Download Memorial Card",
+    "partingWordsPlaceholder": "Write a few parting words to this person...",
+    "saveToMemorial": "Save to Memorial Registry",
+    "startNewLife": "Be Born Again"
+  },
+  "memorials": {
+    "title": "Memorial Registry",
+    "subtitle": "Browsing lives lived and remembered",
+    "randomLife": "View a Random Life",
+    "myLives": "My Recorded Lives",
+    "exportJson": "Export Records (JSON)",
+    "importJson": "Import Records (JSON)",
+    "clearRecords": "Clear All Records",
+    "emptyMessage": "No lives recorded yet. Start your first journey into the world.",
+    "livedYears": "years lived"
+  },
+  "nav": {
+    "home": "Simulator",
+    "memorials": "Memorials",
+    "countryStats": "Country Data (/c/)",
+    "about": "About",
+    "edu": "Education (/edu)",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "crisisHelp": "Crisis Help Resources"
+  },
+  "disclaimer": {
+    "text": "Simulated lives are probabilistic illustrations grounded in real country statistics. They are not deterministic predictions or individual fate.",
+    "heavyThemesWarning": "This simulation includes realistic statistical occurrences of illness, poverty, and conflict. Frightening themes can be suppressed in setup."
+  },
+  "crisis": {
+    "title": "Support & Crisis Assistance",
+    "helpAvailable": "Free, confidential assistance is available worldwide."
+  }
+}

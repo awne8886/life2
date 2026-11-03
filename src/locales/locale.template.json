@@ -1,0 +1,112 @@
+{
+  "__meta": {
+    "language": "Language Name (e.g. Español, Français, Deutsch, العربية)",
+    "code": "ISO-639-1 code (e.g. es, fr, de, ar)",
+    "direction": "ltr or rtl",
+    "translator": "Translator Name / Community"
+  },
+  "app": {
+    "title": "",
+    "subtitle": "",
+    "tagline": "",
+    "goal": ""
+  },
+  "hero": {
+    "hook": "",
+    "liveBirths": "",
+    "liveDeaths": "",
+    "bornRate": "",
+    "deathRate": "",
+    "beBornButton": "",
+    "continueExistingLife": ""
+  },
+  "setup": {
+    "title": "",
+    "worldEra": "",
+    "worldToday": "",
+    "worldPast1970": "",
+    "worldPast1990": "",
+    "worldFuture2050": "",
+    "worldAny": "",
+    "birthWeighting": "",
+    "weightingBirths": "",
+    "weightingPopulation": "",
+    "lifeSpeed": "",
+    "speedSlow": "",
+    "speedNormal": "",
+    "speedFast": "",
+    "realBirthplace": "",
+    "calmMusic": "",
+    "leaveOutFrightening": "",
+    "classroomMode": "",
+    "autoMode": ""
+  },
+  "game": {
+    "age": "",
+    "year": "",
+    "focus": "",
+    "health": "",
+    "happiness": "",
+    "knowledge": "",
+    "relationships": "",
+    "wealth": "",
+    "focusEducation": "",
+    "focusIncome": "",
+    "focusHealth": "",
+    "focusRelationships": "",
+    "nextYear": "",
+    "pause": "",
+    "play": "",
+    "lifeRecord": "",
+    "sameSecondPeers": "",
+    "peersSub": "",
+    "decisionRequired": "",
+    "makeChoice": "",
+    "milestonePaused": "",
+    "personalNoteOptional": "",
+    "saveAndContinue": "",
+    "autoModeActive": ""
+  },
+  "death": {
+    "title": "",
+    "passedAwayAt": "",
+    "inYear": "",
+    "cause": "",
+    "lifeMapTitle": "",
+    "finalStanding": "",
+    "comparisonTitle": "",
+    "shareCard": "",
+    "partingWordsPlaceholder": "",
+    "saveToMemorial": "",
+    "startNewLife": ""
+  },
+  "memorials": {
+    "title": "",
+    "subtitle": "",
+    "randomLife": "",
+    "myLives": "",
+    "exportJson": "",
+    "importJson": "",
+    "clearRecords": "",
+    "emptyMessage": "",
+    "livedYears": ""
+  },
+  "nav": {
+    "home": "",
+    "memorials": "",
+    "countryStats": "",
+    "about": "",
+    "edu": "",
+    "privacy": "",
+    "terms": "",
+    "crisisHelp": ""
+  },
+  "disclaimer": {
+    "text": "",
+    "heavyThemesWarning": ""
+  },
+  "crisis": {
+    "title": "",
+    "helpAvailable": ""
+  }
+}

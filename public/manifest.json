@@ -1,0 +1,22 @@
+{
+  "short_name": "life",
+  "name": "life — Realistic Random-Birth Simulator",
+  "description": "Live one whole life anywhere in the world inside real country statistics.",
+  "icons": [
+    {
+      "src": "/icon-192.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#f7f5ef",
+  "theme_color": "#8b3822",
+  "display": "standalone",
+  "orientation": "portrait"
+}
