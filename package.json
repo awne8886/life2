@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "deploy": "npm run build && cd dist && git init && git checkout -b gh-pages && git add -A && git commit -m 'Deploy build' && git remote add origin https://github.com/awne8886/life2.git && git push -f origin gh-pages && rm -rf .git && cd .."
   },
   "dependencies": {
     "clsx": "^2.1.1",
