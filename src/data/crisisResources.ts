@@ -123,6 +123,22 @@ export const CRISIS_RESOURCES_BY_COUNTRY: Record<string, RegionCrisisGuide> = {
       available: 'Daily Support in English & Japanese',
       description: 'Free confidential counseling and crisis intervention.'
     }
+  },
+  VNM: {
+    generalMentalHealth: {
+      name: 'Viện Sức khỏe Tâm thần Quốc gia / Đường dây nóng Ngày Mai',
+      phone: '096 306 1414',
+      website: 'https://nimh.gov.vn',
+      available: 'Daily Support',
+      description: 'Tư vấn tâm lý và hỗ trợ khủng hoảng cảm xúc tại Việt Nam.'
+    },
+    youthOrChildline: {
+      name: 'Tổng đài Quốc gia Bảo vệ Trẻ em (National Child Helpline)',
+      phone: '111',
+      website: 'https://tongdai111.vn',
+      available: '24/7 Miễn phí',
+      description: 'Tổng đài điện thoại quốc gia bảo vệ và hỗ trợ trẻ em tại Việt Nam.'
+    }
   }
 };
 

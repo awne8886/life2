@@ -265,7 +265,7 @@ export const GAME_EVENTS: GameEvent[] = [
     maxAge: 11,
     category: 'environment',
     weight: 6,
-    condition: (state) => ['IND', 'BGD', 'PHL', 'IDN', 'NGA'].includes(state.country.code),
+    condition: (state) => ['IND', 'BGD', 'PHL', 'IDN', 'NGA', 'VNM'].includes(state.country.code),
     title: 'Torrential Inundation',
     isDecision: false,
     narrative: () => `Monsoon rains flood the low-lying access roads with knee-deep muddy water. School is canceled for a week while families pile sandbags against front doorways.`,
@@ -451,7 +451,7 @@ export const GAME_EVENTS: GameEvent[] = [
     title: 'National Standardized Exams',
     isDecision: false,
     narrative: (state) => {
-      if (['IND', 'CHN', 'KOR', 'JPN'].includes(state.country.code)) {
+      if (['IND', 'CHN', 'KOR', 'JPN', 'VNM'].includes(state.country.code)) {
         return `You sit for grueling national school-leaving examinations alongside millions of students in cavernous halls under whirling ceiling fans.`;
       }
       return `You complete national secondary examinations, waiting anxiously for the posted score lists outside the administration building.`;
@@ -690,7 +690,7 @@ export const GAME_EVENTS: GameEvent[] = [
     maxAge: 29,
     category: 'career',
     weight: 6,
-    condition: (state) => ['PHL', 'IND', 'BGD', 'EGY', 'MEX', 'COL'].includes(state.country.code),
+    condition: (state) => ['PHL', 'IND', 'BGD', 'EGY', 'MEX', 'COL', 'VNM'].includes(state.country.code),
     title: 'The Foreign Contract Opportunity',
     isDecision: true,
     narrative: () => `A licensed overseas recruitment agency offers a three-year contract working construction and logistics abroad.`,

@@ -5,7 +5,7 @@ import { evaluateYearlyMortality } from './mortality';
 
 export function initializeSameSecondPeers(prng: PRNG, playerCountryCode: string): PeerBaby[] {
   const peers: PeerBaby[] = [];
-  const candidateCountries = ['NGA', 'IND', 'CHN', 'USA', 'BRA', 'COD', 'DEU', 'JPN', 'ETH', 'AFG', 'NOR'];
+  const candidateCountries = ['NGA', 'IND', 'CHN', 'USA', 'BRA', 'COD', 'DEU', 'JPN', 'ETH', 'AFG', 'NOR', 'VNM'];
 
   let attempts = 0;
   while (peers.length < 4 && attempts < 30) {

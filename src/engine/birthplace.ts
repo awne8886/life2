@@ -83,6 +83,10 @@ const FIRST_NAMES_BY_COUNTRY_SEX: Record<string, { male: string[]; female: strin
   COL: {
     male: ['Santiago', 'Juan Jose', 'Samuel', 'Jerónimo', 'Emiliano', 'Maximiliano'],
     female: ['Luciana', 'Isabella', 'Salome', 'Antonella', 'Mariana', 'Gabriela']
+  },
+  VNM: {
+    male: ['Minh', 'Duc', 'Long', 'Hung', 'Tuan', 'Nam', 'Quang', 'Hieu', 'Duy', 'Bao'],
+    female: ['Linh', 'Trang', 'Mai', 'Huong', 'Anh', 'Ngoc', 'Ha', 'Chau', 'Vy', 'Phuong']
   }
 };
 

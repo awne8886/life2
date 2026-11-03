@@ -902,6 +902,52 @@ export const COUNTRIES: CountryData[] = [
       education: 'MinEducacion Colombia',
       sourceYear: 2024
     }
+  },
+  {
+    code: 'VNM',
+    name: 'Vietnam',
+    flag: '🇻🇳',
+    region: 'East Asia & Pacific',
+    subregion: 'South-Eastern Asia',
+    population: 98858950,
+    annualBirths: 1350000,
+    fertilityRate: 1.95,
+    lifeExpectancyTotal: 73.6,
+    lifeExpectancyMale: 69.1,
+    lifeExpectancyFemale: 78.2,
+    infantMortality: 13.9,
+    under5Mortality: 18.2,
+    maternalMortalityRatio: 43,
+    gdpPerCapitaPPP: 14400,
+    gini: 36.8,
+    meanYearsSchooling: 8.4,
+    tertiaryEnrollmentRate: 38.6,
+    agriculturalEmploymentRate: 27.5,
+    urbanPopulationRate: 39.5,
+    hivPrevalence: 0.3,
+    homicideRate: 1.5,
+    smokingPrevalence: 22.5,
+    outOfPocketHealthSpending: 43.0,
+    childMarriageRate: 11.0,
+    lifeSatisfaction: 6.0,
+    commonLanguages: ['Vietnamese', 'Tay', 'Thai', "H'Mong"],
+    capitalCity: 'Hanoi',
+    primaryReligions: ['Folk religion / Non-religious', 'Buddhism', 'Catholicism', 'Caodaism'],
+    causesOfDeathRanked: [
+      { category: 'Stroke & Cerebrovascular diseases', sharePercent: 21.6 },
+      { category: 'Ischemic heart disease', sharePercent: 12.3 },
+      { category: 'Neoplasms (Liver, Lung, Stomach Cancers)', sharePercent: 20.2 },
+      { category: 'Chronic obstructive pulmonary disease (COPD)', sharePercent: 7.1 },
+      { category: 'Road traffic injuries', sharePercent: 5.8 },
+      { category: 'Diabetes mellitus', sharePercent: 4.1 }
+    ],
+    sources: {
+      births: 'UN World Population Prospects (2024 Revision) & GSO Vietnam',
+      gdp: 'World Bank International Comparison Program (2024)',
+      mortality: 'UN IGME & WHO Global Health Estimates (2024)',
+      education: 'UNDP Human Development Report (2024)',
+      sourceYear: 2024
+    }
   }
 ];
 

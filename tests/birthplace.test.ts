@@ -63,6 +63,13 @@ describe('Birthplace Sampler', () => {
     expect(ind).toBeDefined();
     expect(ind?.name).toBe('India');
 
+    const vnm = getCountryByCode('VNM');
+    expect(vnm).toBeDefined();
+    expect(vnm?.name).toBe('Vietnam');
+    expect(vnm?.flag).toBe('🇻🇳');
+    expect(vnm?.annualBirths).toBeGreaterThan(1000000);
+    expect(vnm?.causesOfDeathRanked.length).toBeGreaterThan(0);
+
     const invalid = getCountryByCode('XYZ');
     expect(invalid).toBeUndefined();
   });
