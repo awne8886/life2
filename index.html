@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>life — A realistic random-birth life simulator</title>
+    <meta name="description" content="You are born at random as one of today's babies anywhere in the world. Live one whole life inside real country statistics. The goal is perspective, not winning." />
+    <meta name="theme-color" content="#0f1012" />
+
+    <!-- Theme Initialization: Default to Dark Mode -->
+    <script>
+      (function() {
+        try {
+          const stored = localStorage.getItem('life_theme');
+          if (stored === 'light') {
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- PWA -->
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="./icon-192.svg" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="life" />
+
+    <!-- Editorial Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="./assets/index-Cb3CqESc.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CJJGoETD.css">
+  </head>
+  <body class="bg-parchment-100 text-ink antialiased selection:bg-rust selection:text-white min-h-screen">
+    <div id="root"></div>
+  </body>
+</html>
