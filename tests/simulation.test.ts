@@ -134,5 +134,38 @@ describe('Deterministic Simulation Engine', () => {
 
     expect(state.country.code).toBe('VNM');
     expect(state.country.name).toBe('Vietnam');
+    expect(state.history[0].headline).toBe('Born in Vietnam');
+  });
+
+  it('should guarantee birth country when user selected country via realCountryCode fallback', () => {
+    const state = createInitialSimulationState({
+      worldEra: 'today',
+      birthWeighting: 'births',
+      realCountryCode: 'VNM',
+      lifeSpeed: 'normal',
+      leaveOutFrighteningScenes: false,
+      classroomMode: false,
+      calmMusic: false,
+      autoMode: false
+    });
+
+    expect(state.country.code).toBe('VNM');
+    expect(state.country.name).toBe('Vietnam');
+  });
+
+  it('should guarantee birth country with case-insensitive name matching', () => {
+    const state = createInitialSimulationState({
+      worldEra: 'today',
+      birthWeighting: 'births',
+      targetCountryCode: 'vietnam',
+      lifeSpeed: 'normal',
+      leaveOutFrighteningScenes: false,
+      classroomMode: false,
+      calmMusic: false,
+      autoMode: false
+    });
+
+    expect(state.country.code).toBe('VNM');
+    expect(state.country.name).toBe('Vietnam');
   });
 });

@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Sparkles, Globe, Heart, Activity } from 'lucide-react';
+import { Sparkles, Globe, Heart, Activity, Settings2 } from 'lucide-react';
+import { COUNTRIES } from '../data/countries';
 import { t } from '../locales/i18n';
 
 interface LandingHeroProps {
   onStart: () => void;
+  onStartWithCountry: (countryCode?: string) => void;
   hasActiveRun: boolean;
   onResume: () => void;
 }
 
-export const LandingHero: React.FC<LandingHeroProps> = ({ onStart, hasActiveRun, onResume }) => {
+export const LandingHero: React.FC<LandingHeroProps> = ({
+  onStart,
+  onStartWithCountry,
+  hasActiveRun,
+  onResume
+}) => {
   const [secondsElapsed, setSecondsElapsed] = useState(0);
+  const [selectedCountry, setSelectedCountry] = useState<string>('');
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -21,6 +29,12 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onStart, hasActiveRun,
   // Global rates: ~4.3 births per second, ~1.9 deaths per second (UN WPP)
   const birthsCount = Math.floor(secondsElapsed * 4.3);
   const deathsCount = Math.floor(secondsElapsed * 1.9);
+
+  const chosenCountryObj = COUNTRIES.find((c) => c.code === selectedCountry);
+
+  const handleBeBorn = () => {
+    onStartWithCountry(selectedCountry || undefined);
+  };
 
   return (
     <section className="relative pt-12 pb-8 px-4 max-w-4xl mx-auto text-center">
@@ -73,25 +87,71 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onStart, hasActiveRun,
       </div>
 
       {/* Core Principle Callout */}
-      <p className="text-sm text-ink-light max-w-xl mx-auto mb-8 font-sans leading-relaxed">
-        You cannot choose where, when, or to whom you are born. You will live one full life from age 0 to death.
+      <p className="text-sm text-ink-light max-w-xl mx-auto mb-6 font-sans leading-relaxed">
+        You can experience the natural random birth lottery, or select a specific country below to guarantee birth there.
         <span className="font-medium text-ink block mt-1">The goal is perspective, not winning.</span>
       </p>
 
-      {/* Quick Action CTA */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+      {/* Hero Country Selection & Primary CTA */}
+      <div className="max-w-xl mx-auto space-y-3 mb-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="w-full sm:w-72 text-left">
+            <label className="block text-[11px] font-semibold text-ink-light uppercase tracking-wider mb-1">
+              Select Birth Country:
+            </label>
+            <select
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              className="w-full bg-parchment-50 border border-parchment-300 rounded-xl px-3.5 py-3 text-sm text-ink font-medium shadow-xs focus:ring-2 focus:ring-rust focus:outline-none"
+            >
+              <option value="">🎲 Random (Global Birth Lottery)</option>
+              <optgroup label="Alphabetical Countries (Guaranteed Birth)">
+                {COUNTRIES.map((c) => (
+                  <option key={c.code} value={c.code}>
+                    {c.flag} {c.name}
+                  </option>
+                ))}
+              </optgroup>
+            </select>
+          </div>
+
+          <div className="w-full sm:w-auto self-end">
+            <button
+              onClick={handleBeBorn}
+              className="w-full sm:w-auto px-8 py-3 bg-rust hover:bg-rust-dark text-parchment-50 font-serif text-lg font-semibold rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-rust flex items-center justify-center gap-2"
+            >
+              <Sparkles className="w-5 h-5 text-amber-200" />
+              <span>
+                {chosenCountryObj ? `Be born in ${chosenCountryObj.name}` : 'Be born'}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {chosenCountryObj && (
+          <div className="p-2.5 bg-rust/5 border border-rust/30 rounded-xl text-xs text-ink flex items-center justify-center gap-2 animate-fade-in">
+            <span className="text-xl">{chosenCountryObj.flag}</span>
+            <span className="font-medium">
+              Guaranteed birth in <strong className="text-rust-dark font-semibold">{chosenCountryObj.name}</strong>. Demographic rates and income will strictly match {chosenCountryObj.name}.
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Secondary Actions */}
+      <div className="flex flex-wrap items-center justify-center gap-4 text-xs">
         <button
           onClick={onStart}
-          className="w-full sm:w-auto px-8 py-4 bg-rust hover:bg-rust-dark text-parchment-50 font-serif text-lg font-semibold rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-rust focus:ring-offset-2 flex items-center justify-center gap-2"
+          className="text-ink-light hover:text-ink flex items-center gap-1.5 underline decoration-dotted underline-offset-4"
         >
-          <Sparkles className="w-5 h-5 text-amber-200" />
-          <span>Be born</span>
+          <Settings2 className="w-3.5 h-3.5 text-rust" />
+          <span>Advanced Settings (World era, simulation pace, classroom mode)</span>
         </button>
 
         {hasActiveRun && (
           <button
             onClick={onResume}
-            className="w-full sm:w-auto px-6 py-4 bg-parchment-200 hover:bg-parchment-300 border border-parchment-400 text-ink font-medium text-base rounded-xl transition-all shadow-sm flex items-center justify-center"
+            className="px-4 py-2 bg-parchment-200 hover:bg-parchment-300 border border-parchment-300 text-ink font-medium rounded-xl transition-all shadow-xs flex items-center justify-center"
           >
             {t('hero.continueExistingLife', 'Continue life in progress')}
           </button>

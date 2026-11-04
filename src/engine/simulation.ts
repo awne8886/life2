@@ -25,12 +25,13 @@ export function createInitialSimulationState(config: SimulationConfig): Simulati
   const prng = new PRNG(seed);
 
   // Sample birthplace (guaranteed target country if selected by user, else weighted random draw)
+  const effectiveTargetCode = config.targetCountryCode || config.realCountryCode;
   const birth = sampleBirthplace(
     prng,
     config.birthWeighting,
     config.worldEra,
     undefined,
-    config.targetCountryCode
+    effectiveTargetCode
   );
   const country = birth.country;
 

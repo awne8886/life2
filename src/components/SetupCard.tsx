@@ -7,13 +7,18 @@ import { t } from '../locales/i18n';
 interface SetupCardProps {
   onStartGame: (config: SimulationConfig) => void;
   defaultClassroom?: boolean;
+  initialTargetCountryCode?: string;
 }
 
-export const SetupCard: React.FC<SetupCardProps> = ({ onStartGame, defaultClassroom = false }) => {
+export const SetupCard: React.FC<SetupCardProps> = ({
+  onStartGame,
+  defaultClassroom = false,
+  initialTargetCountryCode = ''
+}) => {
   const [worldEra, setWorldEra] = useState<WorldEra>('today');
   const [birthWeighting, setBirthWeighting] = useState<BirthWeighting>('births');
   const [lifeSpeed, setLifeSpeed] = useState<LifeSpeed>('normal');
-  const [targetCountryCode, setTargetCountryCode] = useState<string>('');
+  const [targetCountryCode, setTargetCountryCode] = useState<string>(initialTargetCountryCode);
   const [realCountryCode, setRealCountryCode] = useState<string>('');
   const [calmMusic, setCalmMusic] = useState<boolean>(true);
   const [leaveOutFrightening, setLeaveOutFrightening] = useState<boolean>(false);
@@ -22,10 +27,11 @@ export const SetupCard: React.FC<SetupCardProps> = ({ onStartGame, defaultClassr
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const effectiveCountry = targetCountryCode || realCountryCode || undefined;
     onStartGame({
       worldEra,
       birthWeighting,
-      targetCountryCode: targetCountryCode || undefined,
+      targetCountryCode: effectiveCountry,
       lifeSpeed,
       realCountryCode: realCountryCode || undefined,
       calmMusic,
@@ -197,21 +203,21 @@ export const SetupCard: React.FC<SetupCardProps> = ({ onStartGame, defaultClassr
           </div>
         </div>
 
-        {/* Real Birthplace for End Comparison */}
+        {/* Real-World Living Country for End Comparison */}
         <div>
           <label className="block text-sm font-semibold text-ink mb-1 flex items-center gap-1.5">
             <Compass className="w-4 h-4 text-rust" />
-            <span>Where I was really born (Optional comparison)</span>
+            <span>Real-World Country (Optional comparison at death)</span>
           </label>
           <p className="text-xs text-ink-light/80 mb-2">
-            Never leaves your browser. Used only at the end to contrast this life with your actual birth reality.
+            Where you live in real life today. Used only on the final memorial screen to contrast your simulated destiny with your real country.
           </p>
           <select
             value={realCountryCode}
             onChange={(e) => setRealCountryCode(e.target.value)}
             className="w-full bg-parchment-100 border border-parchment-300 rounded-xl px-3.5 py-2.5 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-rust"
           >
-            <option value="">-- Choose your real country (Optional) --</option>
+            <option value="">-- Choose your real-world country (Optional) --</option>
             {COUNTRIES.map((c) => (
               <option key={c.code} value={c.code}>
                 {c.flag} {c.name}
@@ -281,7 +287,13 @@ export const SetupCard: React.FC<SetupCardProps> = ({ onStartGame, defaultClassr
           className="w-full py-4 bg-rust hover:bg-rust-dark text-parchment-50 font-serif text-xl font-bold rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2"
         >
           <Sparkles className="w-5 h-5 text-amber-200" />
-          <span>Be born</span>
+          <span>
+            {targetCountryCode
+              ? `Be born in ${COUNTRIES.find((c) => c.code === targetCountryCode)?.name}`
+              : realCountryCode
+              ? `Be born in ${COUNTRIES.find((c) => c.code === realCountryCode)?.name}`
+              : 'Be born'}
+          </span>
         </button>
       </form>
     </div>

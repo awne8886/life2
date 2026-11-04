@@ -176,6 +176,18 @@ export function App() {
           <div className="space-y-12">
             <LandingHero
               onStart={() => setShowSetupModal(true)}
+              onStartWithCountry={(countryCode) => {
+                handleStartGame({
+                  worldEra: 'today',
+                  birthWeighting: 'births',
+                  targetCountryCode: countryCode,
+                  lifeSpeed: 'normal',
+                  calmMusic: true,
+                  leaveOutFrighteningScenes: false,
+                  classroomMode: isClassroomFromUrl,
+                  autoMode: false
+                });
+              }}
               hasActiveRun={Boolean(activeSimulation?.isAlive)}
               onResume={handleResumeGame}
             />
@@ -235,7 +247,14 @@ export function App() {
       {/* Quick Setup Modal if triggered from Hero CTA */}
       {showSetupModal && (
         <div className="fixed inset-0 z-50 bg-ink-deep/70 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button
+              onClick={() => setShowSetupModal(false)}
+              className="absolute top-4 right-4 z-10 text-ink-light hover:text-ink bg-parchment-200/90 hover:bg-parchment-300 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shadow-xs"
+              aria-label="Close setup modal"
+            >
+              ✕
+            </button>
             <SetupCard
               onStartGame={handleStartGame}
               defaultClassroom={isClassroomFromUrl}

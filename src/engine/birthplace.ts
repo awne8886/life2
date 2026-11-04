@@ -116,8 +116,14 @@ export function sampleBirthplace(
   }
 
   let baseCountry: CountryData;
-  if (targetCountryCode) {
-    const matched = countries.find((c) => c.code === targetCountryCode);
+  if (targetCountryCode && targetCountryCode.trim()) {
+    const rawTarget = targetCountryCode.trim().toLowerCase();
+    const matched = countries.find(
+      (c) =>
+        c.code.toLowerCase() === rawTarget ||
+        c.name.toLowerCase() === rawTarget ||
+        c.name.toLowerCase().includes(rawTarget)
+    );
     if (matched) {
       baseCountry = matched;
     } else {
